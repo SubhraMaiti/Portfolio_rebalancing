@@ -8,13 +8,6 @@ import datetime as dt
 from dateutil.relativedelta import relativedelta
 import time
 
-tickers_list = ["BAJAJFINSV", "ASIANPAINT", "BAJFINANCE", "BHARTIARTL", "TITAN", 
-              "AXISBANK", "ICICIBANK", "KOTAKBANK", "TCS", "INFY",
-              "NESTLEIND", "RELIANCE", "HINDUNILVR", "MARUTI", "WIPRO",
-              "TECHM", "TATAMOTORS", "SUNPHARMA", "HDFCBANK", "TATASTEEL", 
-              "SBIN", "NTPC", "M&M", "HCLTECH", "ITC",
-              "INDUSINDBK", "ULTRACEMCO", "POWERGRID", "LT", "JSWSTEEL", "LIQUIDBEES"]
-
 def token_lookup(ticker, instrument_list, exchange="NSE"):
     for instrument in instrument_list:
         if instrument["name"] == ticker and instrument["exch_seg"] == exchange and instrument["symbol"].split("-")[-1] == "EQ":
@@ -131,9 +124,6 @@ def rebalance_portfolio(portfolio, cal_matrix, no_stocks, year_month):
     print(portfolio.tolist())
     return portfolio, a
 
-df = hist_data(tickers_list, "2018-01-01 09:15", "2022-12-31 03:30", "ONE_DAY")
-cal_matrix = calculate_monthly_return(df)
-
 def test_strategy():
     start_month = "2018 2"
     
@@ -150,4 +140,12 @@ def test_strategy():
     
     return a
 
+tickers_list = ["BAJAJFINSV", "ASIANPAINT", "BAJFINANCE", "BHARTIARTL", "TITAN", 
+              "AXISBANK", "ICICIBANK", "KOTAKBANK", "TCS", "INFY",
+              "NESTLEIND", "RELIANCE", "HINDUNILVR", "MARUTI", "WIPRO",
+              "TECHM", "TATAMOTORS", "SUNPHARMA", "HDFCBANK", "TATASTEEL", 
+              "SBIN", "NTPC", "M&M", "HCLTECH", "ITC",
+              "INDUSINDBK", "ULTRACEMCO", "POWERGRID", "LT", "JSWSTEEL", "LIQUIDBEES"]
+df = hist_data(tickers_list, "2018-01-01 09:15", "2022-12-31 03:30", "ONE_DAY")
+cal_matrix = calculate_monthly_return(df)
 a = test_strategy()
